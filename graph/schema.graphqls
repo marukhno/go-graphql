@@ -1,0 +1,60 @@
+type Query {
+  account(id: ID!): Account
+  accounts(limit: Int): [Account]
+}
+
+type Account {
+  id: ID!
+  name: Name!
+  shippingAddress: Address!
+  creditCard: CreditCard!
+}
+
+type Name {
+  first: String!
+  last: String!
+}
+
+type Address {
+  country: String!
+  street: String!
+  state: String!
+  zip: String!
+  building: String!
+}
+
+type CreditCard {
+  number: String!
+  pin: Int!
+  expirationDate: String!
+}
+
+input NewName{
+  first: String!
+  last: String!
+}
+
+input NewAddress{
+  country: String!
+  street: String!
+  state: String!
+  zip: String!
+  building: String!
+}
+
+input NewCreditCard{
+  number: String!
+  pin: Int!
+  expirationDate: String!
+}
+
+input NewAccount{
+  id: ID!
+  name: NewName!
+  shippingAddress: NewAddress!
+  creditCard: NewCreditCard!
+}
+
+type Mutation {
+  createAccount(input: NewAccount!): Account!
+}
